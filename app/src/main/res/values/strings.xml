@@ -1,0 +1,29 @@
+<resources>
+    <!-- Main Activity -->
+    <string name="app_name">SecureWelcomePage</string>
+    <string name="mobile_security_challenge">Mobile Security Challenge</string>
+    <string name="complete_all_5_challenges_to_unlock_the_app">Complete all 5 challenges to unlock the app</string>
+    <string name="time_conditioning">Time conditioning</string>
+    <string name="bluetooth_connected_to_specific_device">Bluetooth connected to specific device</string>
+    <string name="brightness_conditioning">Brightness conditioning</string>
+    <string name="scan_specific_barcode">Scan specific barcode</string>
+    <string name="_0_5_challenges_completed">0/5 challenges completed</string>
+    <string name="unlock_app">UNLOCK APP</string>
+    <string name="scan_barcode">SCAN BARCODE</string>
+    <string name="proximity_sensor_conditioning">Proximity sensor conditioning</string>
+    <!-- Success Activity -->
+    <string name="all_challenges_completed">All Challenges Completed!</string>
+    <string name="you_have_successfully_completed_all_security_challenges">You have successfully completed all security challenges. The app is now unlocked!</string>
+    <string name="completed_challenges">Completed Challenges:</string>
+    <string name="close">CLOSE</string>
+    <!-- Challenge Descriptions -->
+    <string name="proximity_challenge">You covered the proximity sensor for 10 seconds</string>
+    <string name="time_challenge">You launched the app when minutes were divisible by 2</string>
+    <string name="bluetooth_challenge">You connected to the specific Bluetooth device</string>
+    <string name="brightness_challenge">You set your screen brightness to maximum</string>
+    <string name="barcode_challenge">You scanned the specific barcode: 7290002331124</string>
+    <string name="challenges_status">%1$d/5 challenges completed</string>
+    <!--  Barcode Activities  -->>
+    <string name="cancel">CANCEL</string>
+    <string name="scan_the_barcode">Scan the specific barcode: 72900XXXXXXXX</string>
+</resources>
