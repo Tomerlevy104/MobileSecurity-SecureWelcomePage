@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     // Constants
     // Replace to your Bluetooth device MAC address
     private val TARGET_DEVICE_ADDRESS =
-        "DC:53:92:70:04:04" // My specific Bluetooth device MAC address
+        "XX:XX:XX:XX:XX:XX" // My specific Bluetooth device MAC address
     private val TARGET_BARCODE = "7290002331124" // Barcode of water taste apple
     private val PROXIMITY_THRESHOLD = 0f // Sensor returns 0 when object is near
     private val PROXIMITY_DURATION_MS = 10000L // 10 seconds
