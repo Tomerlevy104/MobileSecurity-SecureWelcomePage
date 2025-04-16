@@ -7,8 +7,10 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.OptIn
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
+import androidx.camera.core.ExperimentalGetImage
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
@@ -21,10 +23,6 @@ import com.google.mlkit.vision.common.InputImage
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-/**
- * Barcode scanning activity
- * Displays a camera preview and searches for barcodes in real time
- */
 class BarcodeScannerActivity : AppCompatActivity() {
 
     private lateinit var cameraPreview: PreviewView
@@ -64,13 +62,15 @@ class BarcodeScannerActivity : AppCompatActivity() {
 
         // Check camera permission
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) ==
-            PackageManager.PERMISSION_GRANTED) {
+            PackageManager.PERMISSION_GRANTED
+        ) {
             startCamera()
         } else {
             requestPermissionLauncher.launch(Manifest.permission.CAMERA)
         }
     }
 
+    @OptIn(ExperimentalGetImage::class)
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
@@ -79,11 +79,11 @@ class BarcodeScannerActivity : AppCompatActivity() {
                 // Camera provider
                 val cameraProvider = cameraProviderFuture.get()
 
-                // Define the preview use case
+                // Define the preview
                 val preview = Preview.Builder().build()
                 preview.surfaceProvider = cameraPreview.surfaceProvider
 
-                // Image analysis use case definition
+                // Image analysis
                 val imageAnalysis = ImageAnalysis.Builder()
                     .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                     .build()
@@ -110,9 +110,14 @@ class BarcodeScannerActivity : AppCompatActivity() {
         }, ContextCompat.getMainExecutor(this))
     }
 
+    // Process each camera frame to detect barcodes
+    // This function is the core of the barcode scanning mechanism in the app
+    @androidx.camera.core.ExperimentalGetImage
     private fun processImageProxy(imageProxy: ImageProxy) {
-        val mediaImage = imageProxy.image
+        // Get the image from the proxyImage
+        val mediaImage = imageProxy.image // Access to the image data
         if (mediaImage != null) {
+            // Convert camera image to barcode scanner InputImage format
             val inputImage = InputImage.fromMediaImage(
                 mediaImage,
                 imageProxy.imageInfo.rotationDegrees
@@ -133,15 +138,6 @@ class BarcodeScannerActivity : AppCompatActivity() {
                                     putExtra("BARCODE_RESULT", barcodeValue)
                                 }
                                 setResult(RESULT_OK, resultIntent)
-
-                                // Display a message with the scanned value
-                                runOnUiThread {
-                                    Toast.makeText(
-                                        this,
-                                        "Scanned: $barcodeValue",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
                                 finish()
                                 break
                             }
