@@ -18,7 +18,8 @@ class ProximityManager(private val context: Context) : IChallengeManager, Sensor
     private val TAG = "ProximityManager"
     private val PROXIMITY_THRESHOLD = 4f
     private val PROXIMITY_DURATION_MS = 10000L // 10 seconds
-    private val sensorManager: SensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+    private val sensorManager: SensorManager =
+        context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
     private val proximitySensor: Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)
     private val isProximityNear = AtomicBoolean(false)
     private var timer: CountDownTimer? = null
@@ -29,7 +30,8 @@ class ProximityManager(private val context: Context) : IChallengeManager, Sensor
 
     init {
         if (!hasProximitySensor) {
-            Toast.makeText(context, "Device doesn't have proximity sensor", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Device doesn't have proximity sensor", Toast.LENGTH_LONG)
+                .show()
         }
     }
 
@@ -54,6 +56,7 @@ class ProximityManager(private val context: Context) : IChallengeManager, Sensor
 
     override fun onSensorChanged(event: SensorEvent) {
         if (event.sensor.type == Sensor.TYPE_PROXIMITY) {
+            // `event.values[0]` contains the distance in centimeters between the sensor and the nearest object
             val distance = event.values[0]
             Log.d(TAG, "Raw Distance: $distance, Threshold: $PROXIMITY_THRESHOLD")
 
@@ -61,7 +64,8 @@ class ProximityManager(private val context: Context) : IChallengeManager, Sensor
             if (distance < PROXIMITY_THRESHOLD) {
                 if (!isProximityNear.getAndSet(true)) {
                     // Show toast and start timer when state changes from far to near
-                    Toast.makeText(context, "Object detected near sensor!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Object detected near sensor!", Toast.LENGTH_SHORT)
+                        .show()
                     Log.d(TAG, "Object is NEAR")
 
                     // Start timer
@@ -87,7 +91,8 @@ class ProximityManager(private val context: Context) : IChallengeManager, Sensor
                     Log.d(TAG, "Object is FAR, canceling timer")
                     timer?.cancel()
                     if (!isProximityChallengeCompleted) {
-                        Toast.makeText(context, "Sensor uncovered too soon.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Sensor uncovered too soon.", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
             }

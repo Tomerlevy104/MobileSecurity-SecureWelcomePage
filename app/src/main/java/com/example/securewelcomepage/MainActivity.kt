@@ -17,7 +17,6 @@ import com.google.android.material.textview.MaterialTextView
 
 class MainActivity : AppCompatActivity(), IOnChallengeCompletedListener {
 
-    // UI Elements
     private lateinit var proximityLockIcon: AppCompatImageView
     private lateinit var timeLockIcon: AppCompatImageView
     private lateinit var bluetoothLockIcon: AppCompatImageView
@@ -26,8 +25,6 @@ class MainActivity : AppCompatActivity(), IOnChallengeCompletedListener {
     private lateinit var statusTextView: MaterialTextView
     private lateinit var unlockButton: MaterialButton
     private lateinit var scanBarcodeButton: MaterialButton
-
-    // Challenge Managers
     private lateinit var proximityManager: ProximityManager
     private lateinit var timeManager: TimeManager
     private lateinit var bluetoothManager: BluetoothManager
@@ -173,7 +170,7 @@ class MainActivity : AppCompatActivity(), IOnChallengeCompletedListener {
     override fun onChallengeCompleted(challengeType: ChallengeType) {
         // Update UI based on challenge type
         when (challengeType) {
-            //Proximity
+            // Proximity
             ChallengeType.PROXIMITY -> proximityLockIcon.setImageResource(
                 if (proximityManager.isCompleted()) {
                     Toast.makeText(this, "Proximity challenge completed", Toast.LENGTH_SHORT).show()
