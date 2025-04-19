@@ -44,9 +44,6 @@ Each challenge has its own manager:
 3. When all challenges are done, the "UNLOCK APP" button will light up
 4. Press the button to unlock the app
 
-## 💡 Why This Matters
-This app shows how phones can use more than just passwords for security. By using sensors and hardware that phones already have, we can create new ways to keep information safe.
-
 ## 🔑 Permissions Needed
 - 📷 Camera (for scanning barcodes)
 - 📶 Bluetooth (for connecting to devices)
