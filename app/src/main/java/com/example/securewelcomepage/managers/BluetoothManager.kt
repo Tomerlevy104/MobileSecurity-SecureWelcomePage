@@ -28,8 +28,7 @@ class BluetoothManager(
 
     private val TAG = "BluetoothManager"
     // Enter Your Specific Device
-//    private val TARGET_DEVICE_ADDRESS = "XX:XX:XX:XX:XX:XX"
-    private val TARGET_DEVICE_ADDRESS = "DC:53:92:70:04:04"
+    private val TARGET_DEVICE_ADDRESS = "XX:XX:XX:XX:XX:XX"
     private var bluetoothAdapter: BluetoothAdapter? = null
     private var completed = false
     private var listener: IOnChallengeCompletedListener? = null
